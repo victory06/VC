@@ -1,0 +1,83 @@
+% --------------------------------------------------------------
+% This is all preamble stuff that you don't have to worry about.
+% Head down to where it says "Start here"
+% --------------------------------------------------------------
+ 
+\documentclass[12pt]{article}
+\usepackage[margin=1in]{geometry} 
+\usepackage{amsmath,amsthm,amssymb}
+\usepackage[margin=1in]{geometry} 
+\usepackage{amsmath,amsthm,amssymb}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc} %escribe lo del teclado
+\usepackage[utf8]{inputenc} %Reconoce algunos símbolos
+\usepackage{lmodern} %optimiza algunas fuentes
+\usepackage{graphicx}
+\graphicspath{ {images/} }
+\usepackage{hyperref} % Uso de links
+\usepackage{float}
+\date{}
+
+
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+ 
+\newenvironment{theorem}[2][Theorem]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{lemma}[2][Lemma]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{exercise}[2][Exercise]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{problem}[2][Problem]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{question}[2][Question]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{corollary}[2][Corollary]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+
+\newenvironment{solution}{\begin{proof}[Solution]}{\end{proof}}
+ 
+\begin{document}
+
+% --------------------------------------------------------------
+%                         Start here
+% --------------------------------------------------------------
+ 
+\title{Práctica 0: Introducción a OpenCV}
+\author{Víctor Manuel Arroyo Martín\\ %replace with your name
+Visión por Computador}
+
+\maketitle
+\section*{Introducción}
+No he añadido imágenes en esta memoria ya que se muestran al ejecutar el código. También entrego dos versiones del código: una para ejecutar de forma normal y otra para google colab. En colab la carpeta images la guardo dentro de Colab Notebooks, si en su drive estuviera en otra ruta, cambiarla para leer las imágenes.
+
+\section*{Ejercicio 1}
+Para el primer ejercicio, como se indicaba en la guía de prácticas, he pasado el flag del color: si se pasa un -1, la foto se lee como la original y con 0, en escala de grises.
+Para ello, he usado la función de openCV para leer imágenes y le he pasado el flag de color antes nombrado.
+
+\section*{Ejercicio 2}
+Para trasladar y escalar el rango de cada banda de la matriz al [0,1] sin pérdida de información, lo que he hecho ha sido, como no puede ser negativo, sumar el mínimo en caso de que lo fuera para que todos los números de la matriz sean positivos y luego dividir entre el máximo si es mayor que 0 para obtener los números de la matriz en el [0,1]. Si resultase que ningún número es menor que 0 y el máximo es 0, quiere decir que es una matriz sólo de 0 así que se puede visualizar sin problema.\\\\
+
+Por último compruebo si es monobanda o tribanda y muestro en grises o en color respectivamente y para mostrar he usado matplotlib así que he tenido que hacer el cambio de RGB a BGR
+
+\section*{Ejercicio 3}
+Este ejercicio lo he interpretado como que hay que dibujar en una misma ventana las imágenes de vim una a la derecha de otra, es decir concatenarlas.\\\\
+
+Lo que he hecho ha sido redimensionar las imágenes a la que tenga altura mínima manteniendo las proporciones y luego he pasado todas las imágenes a tribanda (a modo color BGR) de forma que las que estaban en blanco y negro siguen así y las que están en color se puedan ver en color.
+
+\section*{Ejercicio 4}
+En este ejercicio lo que he hecho ha sido acceder a la coordenada de cada pixel (y,x) del array de coordenadas que se pasa por parámetro en la función y cambiarlo al color que también se pasa por parámetro. He interpretado que todos los píxeles de la lista se quieren cambiar a un mismo color.\\\\
+Para conseguirlo, lo primero ha sido comprobar si la imagen está en blanco y negro en cuyo caso la paso a modo BGR para que pueda cambiar al color de píxel deseado. Tras ello con un bucle he cambiado cada píxel al color.
+
+\section*{Ejercicio 5}
+Para este último ejercicio he reciclado la parte del código del ejercicio 3 en el que se concatenan las imágenes y para el texto he puesto un borde negro a cada imagen donde se escriben los títulos y luego las he concatenado.
+
+\section*{Adaptar a Google Colab}
+Para que el código funcionase en Google Colab, he tendio que montar la carpeta drive para poder leer de ahí las imágenes y he tenido que añadir plt.show() para que se mostraran las figuras.
+También he tenido que cambiar las rutas de donde quería que se leyera la carpeta images.
+
+% --------------------------------------------------------------
+%     You don't have to mess with anything below this line.
+% --------------------------------------------------------------
+ 
+\end{document}
